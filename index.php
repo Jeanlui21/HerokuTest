@@ -72,7 +72,37 @@
       <div class="mx-auto text-center">
 
         <h1 class="mx-auto py-5 my-5 text-uppercase">Lista de Deportes</h1>
-     
+        <table class="table">
+  <thead>
+    <tr>
+      
+      <th scope="col">Nombre</th>
+      <th scope="col">Descripción</th>
+      <th scope="col">Historia</th>
+    </tr>
+  </thead>
+  <tbody>
+   <?php
+    $conn = mysqli_connect("us-cdbr-iron-east-03.cleardb.net","b8841f10c91da9","3d5a9b16","heroku_d6409e729c58c2a")
+     if($conn-> connect_error){
+       die("Conexión fallida:".$conn-> connect_error);  
+     }
+
+     $sql = "SELECT nombre, descripcion, historia from deportes";
+     $result = $conn->query($sql);
+     if ($result->num_rows > 0) {
+      // output data of each row
+      while($row = $result->fetch_assoc()) {
+       echo "<tr><td>" . $row["nombre"]. "</td><td>" . $row["descripcion"] . "</td><td>"
+. $row["historia"]. "</td></tr>";
+}
+echo "</table>";
+} else { echo "0 results"; }
+$conn->close();
+   
+   ?>
+  </tbody>
+</table>
 
       </div>
     </div>
