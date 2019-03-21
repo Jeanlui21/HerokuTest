@@ -12,7 +12,7 @@
     $message = '';
     if (count($results) > 0 && password_verify($_POST['password'], $results['password'])) {
       $_SESSION['user_id'] = $results['id'];
-      header("Location: /login");
+      header("Location: /");
     } else {
       $message = 'Credenciales no compatibles';
     }
